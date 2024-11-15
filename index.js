@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Synopsys, Inc. All rights reserved worldwide.
+// Copyright (c) 2024 Black Duck Software, Inc. All rights reserved worldwide.
 
 const core = require('@actions/core');
 const shell = require('shelljs');
@@ -49,7 +49,7 @@ try {
 
 		removeFiles(["prescription.sh"]);
 
-		shell.exec(`wget https://raw.githubusercontent.com/synopsys-sig/io-artifacts/${workflowVersion}/prescription.sh`)
+		shell.exec(`wget https://raw.githubusercontent.com/blackduck-inc/io-artifacts/${workflowVersion}/prescription.sh`)
 		shell.exec(`chmod +x prescription.sh`)
 		shell.exec(`sed -i -e 's/\r$//' prescription.sh`)
 		rcode = shell.exec(`./prescription.sh --io.url=${ioServerUrl} --io.token="${ioServerToken}" --io.manifest.url=${ioManifestUrl} --manifest.type=${manifestType} --stage=${stage} --release.type=${releaseType} --workflow.version=${workflowVersion} --asset.id=${asset_id} --scm.type=${scmType} --scm.owner=${scmOwner} --scm.repo.name=${scmRepoName} --scm.branch.name=${scmBranchName} --github.username=${githubUsername} ${additionalWorkflowArgs}`).code;
@@ -95,12 +95,12 @@ try {
 			console.log(`Total Score - ${bizScore + dataScore + accessScore + vulnScore + changeScore}`)
 		}
 
-		removeFiles(["synopsys-io.yml", "synopsys-io.yml", "data.json"]);
+		removeFiles(["io.yml", "io.yml", "data.json"]);
 	} else if (stage.toUpperCase() === "WORKFLOW") {
 		console.log("Adding scan tool parameters")
 		// file doesn't exist
 		if (!fs.existsSync("prescription.sh")) {
-			shell.exec(`wget https://raw.githubusercontent.com/synopsys-sig/io-artifacts/${workflowVersion}/prescription.sh`)
+			shell.exec(`wget https://raw.githubusercontent.com/blackduck-inc/io-artifacts/${workflowVersion}/prescription.sh`)
 			shell.exec(`chmod +x prescription.sh`)
 			shell.exec(`sed -i -e 's/\r$//' prescription.sh`)
 		}
@@ -112,9 +112,9 @@ try {
 		if (wffilecode == 0) {
 			console.log("Workflow file generated successfullly....Calling WorkFlow Engine")
 			if (manifestType === "yml") {
-				configFile = "synopsys-io.yml"
+				configFile = "io.yml"
 			} else if (manifestType === "json") {
-				configFile = "synopsys-io.json"
+				configFile = "io.json"
 			}
 
 			var wfclientcode = shell.exec(`java -jar WorkflowClient.jar --ioiq.url=${ioServerUrl} --ioiq.token="${ioServerToken}" --run.id="${runId}" --workflowengine.url="${workflowServerUrl}" --io.manifest.path="${configFile}"`).code;
