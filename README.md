@@ -51,7 +51,7 @@ jobs:
 
     - name: Intelligent Security Scan
       id: prescription
-      uses: blackduck-inc/intelligent-security-scan@2024.11.0
+      uses: blackduck-inc/intelligent-security-scan@2023.3.3
       with:
         ioServerUrl: "${{secrets.IO_SERVER_URL}}"
         ioServerToken: "${{secrets.IO_SERVER_TOKEN}}"
@@ -87,7 +87,7 @@ jobs:
           scan-mode: INTELLIGENT
 
     - name: Intelligent Security Scan
-      uses: blackduck-inc/intelligent-security-scan@2024.11.0
+      uses: blackduck-inc/intelligent-security-scan@2023.3.3
       with:
         ioServerUrl: "${{secrets.IO_SERVER_URL}}"
         ioServerToken: "${{secrets.IO_SERVER_TOKEN}}"
