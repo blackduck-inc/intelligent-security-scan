@@ -95,7 +95,7 @@ try {
 			console.log(`Total Score - ${bizScore + dataScore + accessScore + vulnScore + changeScore}`)
 		}
 
-		removeFiles(["io.yml", "io.yml", "data.json"]);
+		removeFiles(["synopsys-io.yml", "synopsys-io.yml", "data.json"]);
 	} else if (stage.toUpperCase() === "WORKFLOW") {
 		console.log("Adding scan tool parameters")
 		// file doesn't exist
@@ -112,9 +112,9 @@ try {
 		if (wffilecode == 0) {
 			console.log("Workflow file generated successfullly....Calling WorkFlow Engine")
 			if (manifestType === "yml") {
-				configFile = "io.yml"
+				configFile = "synopsys-io.yml"
 			} else if (manifestType === "json") {
-				configFile = "io.json"
+				configFile = "synopsys-io.json"
 			}
 
 			var wfclientcode = shell.exec(`java -jar WorkflowClient.jar --ioiq.url=${ioServerUrl} --ioiq.token="${ioServerToken}" --run.id="${runId}" --workflowengine.url="${workflowServerUrl}" --io.manifest.path="${configFile}"`).code;
