@@ -1,15 +1,15 @@
-# Synopsys Intelligent Security Scan Action
+# Intelligent Security Scan Action
 
 ## Overview
 
-The Synopsys Intelligent Security Scan Action helps selectively perform SAST and SCA scans, triggered during a variety of GitHub Platform events, such as push or pull request. The Synopsys Intelligent Security Scan Action allows your projects to run the only required type of security scans, optimizing the time taken by security testing and provide quicker feedback on scan results.
+The Intelligent Security Scan Action helps selectively perform SAST and SCA scans, triggered during a variety of GitHub Platform events, such as push or pull request. The Intelligent Security Scan Action allows your projects to run the only required type of security scans, optimizing the time taken by security testing and provide quicker feedback on scan results.
 
 ## Prerequisites
 
 * To use this Action you **must be a licensed Polaris customer.**
 * Intelligent scan server must be deployed and accessible via GitHub Actions.
 
-| :exclamation: To get a demo and learn more about Polaris and the Intelligent Security Scan Action [click here](https://www.synopsys.com/software-integrity/intelligent-orchestration.html#form).|
+| :exclamation: To get a demo and learn more about Polaris and the Intelligent Security Scan Action [click here](https://community.blackduck.com/s/my-support-home).|
 |------------------------------------------|
 
 ## Unclogging the Pipeline
@@ -27,7 +27,7 @@ Filtered and prioritized results are made available directly to the developer wi
 ## Example YAML config
 
 ```yaml
-name: "Synopsys Intelligent Security Scan"
+name: "Intelligent Security Scan"
 
 on:
   push:
@@ -49,9 +49,9 @@ jobs:
     - run: git checkout HEAD^2
       if: ${{ github.event_name == 'pull_request' }}
 
-    - name: Synopsys Intelligent Security Scan
+    - name: Intelligent Security Scan
       id: prescription
-      uses: synopsys-sig/intelligent-security-scan@2023.3.2
+      uses: blackduck-inc/intelligent-security-scan@2023.3.3
       with:
         ioServerUrl: "${{secrets.IO_SERVER_URL}}"
         ioServerToken: "${{secrets.IO_SERVER_TOKEN}}"
@@ -74,9 +74,9 @@ jobs:
 
     # Please note that the ID in previous step was set to prescription
     # in order for this logic to work
-    - name: Software Composition Analysis with Black Duck
+    - name: Software Composition Analysis with Black Duck SCA
       if: ${{steps.prescription.outputs.scaScan == 'true' }}
-      uses: synopsys-sig/detect-action@v0.3.4
+      uses: blackduck-inc/detect-action@v0.3.4
       env:
         SPRING_APPLICATION_JSON: '{"detect.project.name":"{{blackduck_project_name}}","detect.project.version":"{{blackduck_project_version}}","detect.tools":"DETECTOR","blackduck.trust.cert":"true"}'
       with:
@@ -86,8 +86,8 @@ jobs:
           blackduck-api-token: ${{ secrets.BLACKDUCK_TOKEN}}
           scan-mode: INTELLIGENT
 
-    - name: Synopsys Intelligent Security Scan
-      uses: synopsys-sig/intelligent-security-scan@2023.3.2
+    - name: Intelligent Security Scan
+      uses: blackduck-inc/intelligent-security-scan@2023.3.3
       with:
         ioServerUrl: "${{secrets.IO_SERVER_URL}}"
         ioServerToken: "${{secrets.IO_SERVER_TOKEN}}"

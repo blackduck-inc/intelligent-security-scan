@@ -1,5 +1,5 @@
 {
-  "name": "synopsys-io-action",
+  "name": "io-action",
   "version": "1.0.0",
   "description": "Configure your projects to run only the necessary security scans, optimizing scan time and providing a quicker feedback on scan results.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/synopsys-sig/intelligent-security-scan.git"
+    "url": "git+https://github.com/blackduck-inc/intelligent-security-scan.git"
   },
   "keywords": [
     "sast",
@@ -18,17 +18,16 @@
     "intelligent",
     "security",
     "quality",
-    "synopsys",
+    "blackduck",
     "io",
     "workflow",
     "workflowengine"
   ],
-  "author": "software-integrity-support@synopsys.com",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/synopsys-sig/intelligent-security-scan/issues"
+    "url": "https://github.com/blackduck-inc/intelligent-security-scan/issues"
   },
-  "homepage": "https://github.com/synopsys-sig/intelligent-security-scan#readme",
+  "homepage": "https://github.com/blackduck-inc/intelligent-security-scan#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "shelljs": "^0.8.4"
